@@ -5,13 +5,13 @@ FROM python:3.8
 WORKDIR /app
 
 # Copy the requirements file into the container
-COPY requirements.txt .
+COPY ./project/techtrends/requirements.txt .
 
 # Install the packages from the requirements file
 RUN pip install -r requirements.txt
 
 # Copy the rest of the application code into the container
-COPY . .
+COPY ./project/techtrends .
 
 # Expose port 3111 for the application
 EXPOSE 3111
