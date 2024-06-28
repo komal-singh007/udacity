@@ -6,11 +6,11 @@ spec:
   source:
     repoURL: 'https://github.com/komal-singh007/udacity'
     targetRevision: HEAD
-    path: project\helm
+    path: project/helm
     helm:
       valueFiles:
       - values-staging.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: default
+    namespace: staging
   project: default
