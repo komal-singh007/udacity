@@ -3,7 +3,7 @@ namespace:
 
 service:
   port: 7111
-
+appname: techtrends
 image:
   pullPolicy: Always
 
