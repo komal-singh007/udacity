@@ -33,6 +33,4 @@ spec:
             path: {{ .Values.readinessProbe.path }}
             port: {{ .Values.readinessProbe.port }}
         resources:
-          requests:
-            memory: 64Mi
-            cpu: 250m
+{{ toYaml .Values.resources | indent 12 }}
