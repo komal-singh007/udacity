@@ -2,10 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: techtrends-staging
+  namespace: argocd
 spec:
   source:
     repoURL: 'https://github.com/komal-singh007/udacity'
-    targetRevision: HEAD
+    targetRevision: 
+    
     path: project/helm
     helm:
       valueFiles:
