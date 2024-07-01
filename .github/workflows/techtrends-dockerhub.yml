@@ -33,4 +33,4 @@ jobs:
           file: ./project/techtrends/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: komalsingh000/techtrends
+          tags: komalsingh000/techtrends:${{ github.sha }}

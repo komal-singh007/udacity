@@ -71,22 +71,31 @@ def create():
 # check Health
 @app.route('/healthz')
 def health_check():
-    connection = get_db_connection()
-    posts = connection.execute('SELECT * FROM posts').fetchall()
-    if posts:
+    try:
+        connection = get_db_connection()
+        posts = connection.execute('SELECT * FROM posts').fetchall()
+        if posts:
+            response = app.response_class(
+                response=json.dumps({"result":"OK - healthy"}),
+                status=200,
+                mimetype='application/json'
+            )
+        else:
+            response = app.response_class(
+                response=json.dumps({"result":"NOT - healthy"}),
+                status=404,
+                mimetype='application/json'
+            )
+        connection.close()
+        return response
+    except Exception as e:
         response = app.response_class(
-            response=json.dumps({"result":"OK - healthy"}),
-            status=200,
+            response=json.dumps({"result":"ERROR - unhealthy", "message": str(e)}),
+            status=500,
             mimetype='application/json'
         )
-    else:
-        response = app.response_class(
-            response=json.dumps({"result":"NOT - healthy"}),
-            status=404,
-            mimetype='application/json'
-        )
-    connection.close()
     return response
+
 
 # Get Metrics 
 @app.route('/metrics')
